@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloud Cost Efficiency Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="report-header">
+    <div class="report-header__title">
+      <p class="report-header__eyebrow">Resource group</p>
+      <h1>cloud-cost-project-rg</h1>
+    </div>
+    <div class="report-header__meta">
+      <span id="report-range">—</span>
+      <span class="report-header__region">West US 2 · Canada Central</span>
+    </div>
+  </header>
+
+  <main class="ledger">
+
+    <!-- Metric row: fed by data.json -->
+    <section class="metric-row" id="metric-row">
+      <article class="metric-card" data-metric="monthlyCost">
+        <p class="metric-card__label">Est. monthly cost</p>
+        <p class="metric-card__value"><span class="metric-card__prefix">$</span><span id="metric-monthlyCost">—</span></p>
+        <p class="metric-card__sub">Standard_B2pts_v2 · West US 2</p>
+      </article>
+
+      <article class="metric-card" data-metric="cpuAverage">
+        <p class="metric-card__label">Avg. CPU usage</p>
+        <p class="metric-card__value"><span id="metric-cpuAverage">—</span><span class="metric-card__prefix">%</span></p>
+        <p class="metric-card__sub" id="metric-cpuRange">—</p>
+      </article>
+
+      <article class="metric-card metric-card--accent" data-metric="savings" id="savings-card">
+        <p class="metric-card__label">Potential savings</p>
+        <p class="metric-card__value"><span class="metric-card__prefix">$</span><span id="metric-savings">—</span><span class="metric-card__unit">/mo</span></p>
+        <p class="metric-card__sub" id="metric-savingsSub">—</p>
+      </article>
+    </section>
+
+    <!-- Usage chart -->
+    <section class="panel">
+      <div class="panel__head">
+        <h2>CPU usage, hourly</h2>
+        <p class="panel__note">Percentage CPU · averaged per hour</p>
+      </div>
+      <canvas id="cpu-chart" height="220"></canvas>
+      <div class="chart-axis" id="chart-axis"></div>
+    </section>
+
+    <!-- Verdict / recommendation -->
+    <section class="verdict" id="verdict">
+      <p class="verdict__tag" id="verdict-tag">—</p>
+      <p class="verdict__body" id="verdict-body">Waiting on data&hellip;</p>
+    </section>
+
+    <!-- Cost by day table -->
+    <section class="panel">
+      <div class="panel__head">
+        <h2>Daily cost</h2>
+        <p class="panel__note">Actual cost · CAD</p>
+      </div>
+      <table class="ledger-table" id="cost-table">
+        <thead>
+          <tr><th>Date</th><th>Cost</th></tr>
+        </thead>
+        <tbody id="cost-table-body">
+          <tr><td colspan="2">Loading&hellip;</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <footer class="report-footer">
+    <p>Generated from live Azure Cost Management &amp; Monitor data · get_cost.py</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
